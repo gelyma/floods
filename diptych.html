@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>diptych</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+	    
+        }
+
+        .half {
+            flex: 1;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            transition: background 0.3s; /* Smooth transition for background change */
+        }
+
+        .half:hover {
+            filter: brightness(80%); /* Slightly darken on hover */
+        }
+
+        #left-half {
+            background-image: url('soil.png');
+        }
+
+        #right-half {
+            background-image: url('rain.png');
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+
+        }
+
+        #back-button {
+            font-size: 24px;
+	    position: absolute;
+            top: 20px; /* Adjusted space from the top */
+            left: 20px; /* Adjusted space from the left */
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 1; /* Bring the button in front of the images */
+        }
+    </style>
+</head>
+<body>
+
+    <a id="back-button" href="index.html"><</a>
+
+    <div id="left-half" class="half">
+        <div>
+            <h1><a href="soil.html">10 millimeters of soil</a></h1>
+
+        </div>
+    </div>
+
+    <div id="right-half" class="half">
+        <div>
+            <h1><a href="rain.html">1096 millimeters of rain</a></h1>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Hide overflow for the background video */
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #title {
+            text-align: center;
+            font-size: 11px;
+        }
+
+        #title a {
+            color: white;
+            text-decoration: none;
+            font-weight: normal;
+	    letter-spacing: 1px;
+	    
+        }
+
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Place the video behind the content */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Video -->
+    <video id="background-video" autoplay loop muted>
+        <source src="slow rain.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Title as a link to diptych.html -->
+    <div id="title">
+        <h1><a href="diptych.html"><strong>FLOODS </strong>
+<span style="font-size: 14px;"><br> or 
+<br>the millimeters of memory </span><br> <span style="font-size: 11px;"> <span style="color: #555;"> a diptych by <br> Angeliki Malakasioti</span></a></h1>
+    </div>
+
+</body>
+</html>

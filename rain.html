@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1096 millimeters of rain</title>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('room1.png'); /* Relative path to your image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            font-family: 'Arial', san serif; monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end; /* Align to the bottom of the screen */
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #top-left-link {
+            position: absolute;
+            top: 20px; /* Adjusted space from the top */
+            left: 20px; /* Adjusted space from the left */
+            color: white;
+            text-decoration: none;
+            font-size: 20px; /* Increased font size */
+            display: block; /* Added to create a block element */
+            margin-bottom: 10px; /* Added margin at the bottom */
+        }
+
+        #back-link {
+            position: absolute;
+            top: 30px; /* Adjusted space from the top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally */
+            color: white;
+            text-decoration: none;
+            font-size: 20px; /* Increased font size */
+            display: block; /* Added to create a block element */
+            margin-bottom: 10px; /* Added margin at the bottom */
+        }
+
+        .text-container {
+            width: 100%;
+            text-align: justify;
+            text-align-last: justify; /* Justify the last line */
+            padding: 20px;
+            font-size: 12px;
+            line-height: 1;
+            white-space: pre-line; /* Preserve line breaks */
+        }
+    </style>
+
+</head>
+<body>
+    <a id="top-left-link" href="diptych.html">&#160;<</a>
+    <br> <!-- Line break before the link -->
+    <a id="back-link" href="about_rain.html">&#160;+</a>
+
+    <div class="text-container" id="full-text"></div>
+
+    <script>
+        const newsAbstracts = [
+            "Severe flooding reported in Thessaly, Greece, as heavy rains continue to impact the region.",
+            "Emergency services are working tirelessly to evacuate residents from affected areas.",
+            "Officials are urging citizens to stay indoors and avoid unnecessary travel.",
+            // Add more news abstracts as needed
+        ];
+
+        function adjustFontSize(abstracts) {
+            const fullTextContainer = document.getElementById("full-text");
+
+            let i = 0;
+            const intervalId = setInterval(function () {
+                if (i < abstracts.length) {
+                    fullTextContainer.textContent = abstracts[i] + ' ' + fullTextContainer.textContent;
+                    i++;
+                } else {
+                    clearInterval(intervalId);
+                    // Reverse the order and repeat
+                    adjustFontSize(abstracts.reverse());
+                }
+            }, 500); // Adjust the interval as needed
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            adjustFontSize(newsAbstracts);
+
+            window.addEventListener("resize", function () {
+                adjustFontSize(newsAbstracts);
+            });
+        });
+    </script>
+</body>
+</html>

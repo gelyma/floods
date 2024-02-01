@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 millimeters of soil</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-size: 2em;
+            font-weight: regular;
+            font-family: 'Arial', sans-serif;
+            background: url('grid1.png') no-repeat center center fixed;
+            background-size: cover;
+            /* Set background color to solid black */
+            margin: 0;
+            padding: 0;
+            color: white;
+            overflow: hidden;
+            /* Hide scroll bars */
+        }
+
+        .text-container {
+            width: 30%;
+            /* Set the width to 30% of the page */
+            margin: 1em auto 0;
+            /* Adjusted to leave one blank line at the top */
+            padding: 20px;
+            /* Add some padding */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Semi-transparent black background */
+            color: white;
+            /* Text color */
+            font-size: 14px;
+            /* Font size */
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            /* Center text horizontally */
+        }
+
+        /* Style for normal links */
+        a {
+            color: #999;
+            /* Link color */
+            text-decoration: none;
+            /* Remove underline */
+            font-weight: regular;
+            /* Make the text bold */
+        }
+
+        /* Style for hovered links */
+        a:hover {
+            color: #555;
+            /* Change color on hover */
+            text-decoration: none;
+            /* bold on hover */
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            /* Adjusted for vertical alignment */
+        }
+
+        #countdown {
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            /* Add cursor pointer on hover */
+            position: relative;
+        }
+
+        #countdown:hover::after {
+            content: "Time remaining until 10 millimeters of fertile soil top is recreated.";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #888;
+            padding: 5px;
+            border-radius: 5px;
+            display: block;
+            white-space: nowrap;
+        }
+
+        /* Back button style */
+        .back-button {
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            font-size: 20px;
+        }
+
+        /* Link style for the + at the top */
+        .top-link {
+            position: absolute;
+            top: 1em;
+            right: 50%;
+            /* Center horizontally */
+            transform: translateX(50%);
+            font-size: 24px;
+            /* Bigger font size */
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="diptych.html" class="back-button"><</a>
+    <a href="about_soil.html" class="top-link">+</a>
+
+    <div class="countdown-container">
+        <div id="countdown">
+            Countdown goes here
+        </div>
+    </div>
+
+    <script>
+        // script.js
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set the date we're counting down to (change this to your desired date and time)
+            const countDownDate = new Date("February 1, 2123 00:00:00").getTime();
+
+            // Update the countdown every 1 second
+            const x = setInterval(function () {
+                // Get the current date and time
+                const now = new Date().getTime();
+
+                // Calculate the remaining time
+                const distance = countDownDate - now;
+
+                // Calculate years, days, hours, minutes, and seconds
+                const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+                const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the countdown
+                document.getElementById("countdown").innerHTML = `
+                    ${years} years &#160;&#160;&#160;${days} days &#160;&#160;${hours} hours &#160;&#160;${minutes} minutes &#160;&#160;${seconds} seconds&#160;   
+                `;
+
+                // If the countdown is over, display a message
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
