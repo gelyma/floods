@@ -20,6 +20,7 @@
             color: white;
             overflow: hidden;
             /* Hide scroll bars */
+            position: relative; /* Added */
         }
 
         .text-container {
@@ -33,7 +34,7 @@
             /* Semi-transparent black background */
             color: white;
             /* Text color */
-            font-size: 14px;
+            font-size: 18px;
             /* Font size */
             position: absolute;
             top: 0;
@@ -51,6 +52,7 @@
             /* Remove underline */
             font-weight: regular;
             /* Make the text bold */
+
         }
 
         /* Style for hovered links */
@@ -79,7 +81,7 @@
         }
 
         #countdown:hover::after {
-            content: "Time remaining until 10 millimeters of fertile soiltop is recreated.";
+            content: "Time remaining until 10 millimeters of fertile soil top is recreated.";
             position: absolute;
             top: 100%;
             left: 50%;
@@ -110,6 +112,49 @@
             font-size: 24px;
             /* Bigger font size */
         }
+
+        /* Style for '+' symbols */
+        .plus {
+            position: absolute;
+            bottom: 0;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            transform: translate(-50%, 0); /* Center the '+' symbol horizontally */
+            user-select: none; /* Prevent text selection */
+        }
+
+        .plus:hover::after {
+            content: attr(data-phrase);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px;
+            border-radius: 0;
+            display: block;
+            white-space: nowrap;
+            font-size: 13px;
+            max-width: 80vw;
+            overflow: visible; /* Adjusted to make overflow text visible */
+            text-overflow: ellipsis;
+            z-index: 2;
+            bottom: 30px; /* Adjusted to appear over '+' symbols */
+        }
+
+        /* Style for the phrase at the bottom */
+        .bottom-phrase {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-style: italic;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.0);
+            color: light grey;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -125,40 +170,94 @@
     </div>
 
     <script>
-        // script.js
-
         document.addEventListener('DOMContentLoaded', function () {
-            // Set the date we're counting down to (change this to your desired date and time)
             const countDownDate = new Date("February 1, 2123 00:00:00").getTime();
 
-            // Update the countdown every 1 second
             const x = setInterval(function () {
-                // Get the current date and time
                 const now = new Date().getTime();
-
-                // Calculate the remaining time
                 const distance = countDownDate - now;
-
-                // Calculate years, days, hours, minutes, and seconds
                 const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
                 const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Display the countdown
                 document.getElementById("countdown").innerHTML = `
                     ${years} years &#160;&#160;&#160;${days} days &#160;&#160;${hours} hours &#160;&#160;${minutes} minutes &#160;&#160;${seconds} seconds&#160;   
                 `;
 
-                // If the countdown is over, display a message
                 if (distance < 0) {
                     clearInterval(x);
-                    document.getElementById("countdown").innerHTML = "1 centimeter of topsoil is created";
+                    document.getElementById("countdown").innerHTML = "EXPIRED";
                 }
             }, 1000);
+
+            const plusSymbols = document.querySelectorAll('.plus');
+            const numPlusSymbols = plusSymbols.length;
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            function setRandomPositions() {
+                plusSymbols.forEach(function (plus) {
+                    const randomLeft = Math.random() * screenWidth * 1;
+                    const randomBottom = Math.random() * screenHeight * 0.25;
+                    plus.style.left = randomLeft + 'px';
+                    plus.style.bottom = randomBottom + 'px';
+                });
+            }
+
+            function handlePlusClick() {
+                setRandomPositions();
+            }
+
+            setRandomPositions();
+
+            plusSymbols.forEach(function (plus) {
+                let isDragging = false;
+                let offsetX, offsetY;
+
+                plus.addEventListener('mousedown', function (event) {
+                    isDragging = true;
+                    offsetX = event.clientX - plus.getBoundingClientRect().left;
+                    offsetY = event.clientY - plus.getBoundingClientRect().top;
+                });
+
+                document.addEventListener('mousemove', function (event) {
+                    if (isDragging) {
+                        const x = event.clientX - offsetX;
+                        const y = event.clientY - offsetY;
+                        plus.style.left = x + 'px';
+                        plus.style.top = y + 'px';
+                    }
+                });
+
+                document.addEventListener('mouseup', function () {
+                    isDragging = false;
+                });
+
+                plus.addEventListener('click', handlePlusClick);
+            });
         });
     </script>
+
+    <div class="plus" data-phrase="splendid dawn after our dump skin">+</div>
+    <div class="plus" data-phrase="the liquid silence I pursue of murmuring waters">+</div>
+    <div class="plus" data-phrase="ironic, earth shwallows water, along with our pocessions, our flaws, our memories">+</div>
+    <div class="plus" data-phrase="a force, an absence, a thunderstorm, alas!">+</div>
+    <div class="plus" data-phrase="waves upon my wall, I collapse">+</div>
+    <div class="plus" data-phrase="fierce and honest, always unexpected ">+</div>
+    <div class="plus" data-phrase="water and dreams mightily carried away">+</div>
+    <div class="plus" data-phrase="trembling, drowning the shivering poplars ">+</div>
+    <div class="plus" data-phrase="unfathomable brown, mud, mortar and clay">+</div>
+    <div class="plus" data-phrase="mourning with the tree-roots, my woonded childhood">+</div>
+    <div class="plus" data-phrase="how mountains melt, how earth groans and rivers explode">+</div>
+    <div class="plus" data-phrase="a flood...a surge of the deepest oceans upon my door ">+</div>
+    <div class="plus" data-phrase="knowing the skies, an archipelagos of disasters...devouring hope ">+</div>
+    <div class="plus" data-phrase="I floated along with my house to reach a shore">+</div>
+    <div class="plus" data-phrase="fields will grow again, mad with love, mad with life ">+</div>
+
+    <div class="bottom-phrase"><em>Drag soilseeds to new location</em></div>
+
 </body>
 
 </html>
